@@ -1,0 +1,24 @@
+model_name_or_path: {eval_model}
+template: llama3
+finetuning_type: full
+
+# ===== 任務：僅做推論 =====
+do_train: false
+do_eval: false
+do_predict: true
+predict_with_generate: true   
+
+# ===== 資料集 =====
+dataset_dir: dataset
+eval_dataset: cti-mcq_test  
+
+do_sample: false
+max_new_tokens: 512
+repetition_penalty: 1.0
+
+# ===== 執行與輸出 =====
+bf16: true                 
+per_device_eval_batch_size: 8
+output_dir: {output_dir}
+overwrite_output_dir: true
+report_to: none
