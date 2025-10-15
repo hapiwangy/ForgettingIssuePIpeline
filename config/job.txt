@@ -1,24 +1,32 @@
 #!/bin/bash
+#SBATCH --account=ruishanl_1185
+#SBATCH --job-name={dataset1}_use_{dataset1}_and_{dataset2}
+#SBATCH --output=ft_logs/%x_%j.out
+#SBATCH --partition=gpu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=32G
+#SBATCH --time=04:00:00
 
-#SBATCH --account=ruishanl_1185        # 專案帳號
-#SBATCH --partition=gpu                # 使用 GPU 分區
-#SBATCH --gres=gpu:1                   # 要求 1 張 GPU
-#SBATCH --constraint="(A40|v100|a100)" # 指定使用哪種ＧＰＵ
-#SBATCH --cpus-per-task=8              # 每個任務 8 顆 CPU
-#SBATCH --mem=32G                      # 記憶體 32GB
-#SBATCH --time=02:00:00                # 最長執行時間 2 小時
+#SBATCH --gpus=1
+#SBATCH --constraint='a40|a100|v100'   # 多種 GPU 其一即可（節點 features 需有設）
  
-
+if ! type module >/dev/null 2>&1; then
+  [[ -f /etc/profile.d/modules.sh ]] && source /etc/profile.d/modules.sh
+fi   
+# === 環境設定 ===
 module purge
 module load conda      
 
-source activate forgetting                  
+# === 啟動 Conda 環境 ===
+source activate forgetting   
 huggingface-cli login --token 
 
-lmf train dataset/{dataset}/{dataset}_config1.yaml
-lmf train dataset/{dataset}/{dataset}_config2.yaml
-lmf train dataset/{dataset}/{dataset}_config3.yaml
-lmf train dataset/{dataset}/{dataset}_inference1.yaml
-lmf train dataset/{dataset}/{dataset}_inference2.yaml
-lmf train dataset/{dataset}/{dataset}_inference3.yaml
-lmf train dataset/{dataset}/{dataset}_inference4.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_config1.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_config2.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_config3.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference1.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference2.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference3.yaml
+lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference4.yaml

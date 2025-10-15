@@ -1,0 +1,12 @@
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset cti-mcq --to_dataset openai-gsm8k --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset cti-mcq --to_dataset sentiment-reasoning --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset cti-mcq --to_dataset tmlab-quail --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset openai-gsm8k --to_dataset cti-mcq --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset openai-gsm8k --to_dataset sentiment-reasoning --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset openai-gsm8k --to_dataset tmlab-quail --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset sentiment-reasoning --to_dataset cti-mcq --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset sentiment-reasoning --to_dataset openai-gsm8k --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset sentiment-reasoning --to_dataset tmlab-quail --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset tmlab-quail --to_dataset cti-mcq --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset tmlab-quail --to_dataset openai-gsm8k --percent 1
+python helper_combinexpercent.py --datadirectory "dataset" --from_dataset tmlab-quail --to_dataset sentiment-reasoning --percent 1

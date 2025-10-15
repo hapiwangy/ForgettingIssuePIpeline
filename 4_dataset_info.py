@@ -7,11 +7,10 @@ root = Path(target_directory)
 datainfos = {}
 for subdir in [p for p in root.iterdir() if p.is_dir()]:
     files = [f for f in subdir.iterdir() if f.is_file()]
-    name = str(subdir).split('/')[-1]
+    name = Path(subdir).name   
     datainfos[name] = []
     for f in files:
         datainfos[name].append(f.name)
-
 # build the datasetinfo based on the dictionary
 final_result = {}
 for k, vs in datainfos.items():
@@ -20,7 +19,7 @@ for k, vs in datainfos.items():
             "file_name": f"{k}/{v}",
             "formatting": "alpaca"
         }
-
+print(final_result)
 # write the json file
 with open(os.path.join(target_directory, "dataset_info.json"), "w+", encoding="utf-8") as f:
     json.dump(final_result, f, ensure_ascii=False, indent=2)

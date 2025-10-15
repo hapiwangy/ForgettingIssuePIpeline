@@ -1,4 +1,5 @@
 # ForgettingIssuePipeline
+# when using the script, adding hf token to the job.txt and 1_pre_processing manual
 ## final file system
 - dataset
     - dataset
@@ -70,5 +71,7 @@
 ## produce the compare the answer
 - if too hard, this part can be done with manual 
 - for each dataset, we need to check the result to know how to transfer the answer 
+
+
 
 token: 

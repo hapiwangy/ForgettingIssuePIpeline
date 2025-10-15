@@ -10,7 +10,7 @@ predict_with_generate: true
 
 # ===== 資料集 =====
 dataset_dir: dataset
-eval_dataset: cti-mcq_test  
+eval_dataset: {dataset1}_test  
 
 do_sample: false
 max_new_tokens: 512
