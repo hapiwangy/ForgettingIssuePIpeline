@@ -1,4 +1,9 @@
 running flow
+
+## run flow.sh too see make the config files used to upload to the server
+
+
+
 # 1. python 1_pre_processing.ipynb 
 ```
 output: 

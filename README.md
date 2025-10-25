@@ -74,4 +74,5 @@
 
 
 
-token: 
+1. token: remember to added this into the config/job.txt and 1_pre_processing.ipynb before the usage
+2. rememeber to download the dreaddit dataset from the google or somewhere

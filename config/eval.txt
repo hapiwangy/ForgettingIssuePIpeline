@@ -19,6 +19,6 @@ repetition_penalty: 1.0
 # ===== 執行與輸出 =====
 bf16: true                 
 per_device_eval_batch_size: 8
-output_dir: {output_dir}
+output_dir: {output_dir} 
 overwrite_output_dir: true
 report_to: none

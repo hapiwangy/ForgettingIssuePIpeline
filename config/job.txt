@@ -1,32 +1,27 @@
 #!/bin/bash
 #SBATCH --account=ruishanl_1185
-#SBATCH --job-name={dataset1}_use_{dataset1}_and_{dataset2}
-#SBATCH --output=ft_logs/%x_%j.out
+#SBATCH --job-name=based_on_{dataset}_{state}
+#SBATCH --output=ft_logs/%x_%j.out  
 #SBATCH --partition=gpu
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=32G
-#SBATCH --time=04:00:00
+#SBATCH --mem=64G
+#SBATCH --time=48:00:00
 
 #SBATCH --gpus=1
-#SBATCH --constraint='a40|a100|v100'   # 多種 GPU 其一即可（節點 features 需有設）
- 
+#SBATCH --constraint='a40|a100'   # 多種 GPU 其一即可（節點 features 需有設）
 if ! type module >/dev/null 2>&1; then
   [[ -f /etc/profile.d/modules.sh ]] && source /etc/profile.d/modules.sh
-fi   
-# === 環境設定 ===
+fi
 module purge
-module load conda      
+module load gcc
+module load cuda
+module load conda
 
-# === 啟動 Conda 環境 ===
-source activate forgetting   
-huggingface-cli login --token 
+source "$(conda info --base)/etc/profile.d/conda.sh" 2>/dev/null || true
+conda activate forgetting 2>/dev/null || \
+          
+huggingface-cli login --token (remeber to add your token before used)
 
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_config1.yaml
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_config2.yaml
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_config3.yaml
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference1.yaml
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference2.yaml
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference3.yaml
-lmf train dataset/{dataset1}/{dataset1}_use_{dataset1}_and_{dataset2}_inference4.yaml
+{querylists}

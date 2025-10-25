@@ -22,8 +22,10 @@ per_device_train_batch_size: 2
 gradient_accumulation_steps: 8
 learning_rate: 2e-5
 
+deepspeed: examples/deepspeed/ds_z3_config.json
+
 bf16: true
-logging_steps: 20
+logging_steps: 200
 eval_strategy: epoch
 save_strategy: epoch
 save_total_limit: 2
